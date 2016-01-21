@@ -116,6 +116,15 @@ public class Client implements Runnable {
 
                     temp = bs.toByteArray();
 
+                    if (temp.length > 4 && temp[temp.length-4]==(byte)13 && temp[temp.length-3]==(byte)10 &&
+                            temp[temp.length-2]==(byte)13 && temp[temp.length-1]==(byte)10){
+                        String request = new String(temp, 0, temp.length-4);
+                        process(request, os);
+
+                    }
+
+
+                    /* optimised
                     for (int i = 0; i < temp.length - 3; i++) {
                         if ((temp[i] == (byte)13) && (temp[i + 1] == (byte)10) &&
                             (temp[i + 2] == (byte)13) && (temp[i + 3] == (byte)10))
@@ -123,7 +132,7 @@ public class Client implements Runnable {
                             String request = new String(temp, 0, i);
                             process(request, os);
                         }
-                    }
+                    }*/
                 } while ( ! Thread.currentThread().isInterrupted());
             } finally {
                 socket.close();
