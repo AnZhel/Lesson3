@@ -19,7 +19,6 @@ public class Compressor implements Processor {
 	public byte[] process(byte[] data, List<String> headers) {
         try {
             ByteArrayOutputStream os = new ByteArrayOutputStream();
-            
             if (compAlg == ALG_DEFLATE) {
                 DeflaterOutputStream ds = new DeflaterOutputStream(os, new Deflater(compLevel));
                 ds.write(data);

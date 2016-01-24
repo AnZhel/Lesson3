@@ -1,5 +1,6 @@
 package http;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class ProcessorsList implements Processor {
         list.add(p);
     }
 
-    public byte[] process(byte[] data, List<String> headers) {
+    public byte[] process(byte[] data, List<String> headers) throws IOException {
         byte[] res = data;
         
         for (Processor p : list)
